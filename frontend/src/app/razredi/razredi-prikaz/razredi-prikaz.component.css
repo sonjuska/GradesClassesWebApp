@@ -1,0 +1,7 @@
+td.razred:hover{
+    background-color: rgb(135, 21, 160);
+    font-size:x-large;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}

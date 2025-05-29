@@ -1,0 +1,92 @@
+<div class="container">
+
+    <div class="body">
+        <h1>Izmeni razred</h1>
+    </div>
+    
+    <nav class="main-nav">
+    <span (click)="razredi()" class="link">Razredi</span>                     
+    <span>|</span>
+    <span (click)="odeljenja()" class="link">Odeljenja</span>                
+    </nav>
+
+    <div class="body">
+        
+        <form (ngSubmit)="izmeniRazred()" [formGroup]="razredForma" class="forma">
+            <!--Skolska godina-->
+            <div class="form-group">
+                <label for="skolskaGodina">Školska godina:</label>
+                <select id="skolskaGodina" formControlName="skolskaGodina">
+                    <option *ngFor="let stavka of stavkeSifrarnikaSkolskaGodina" [value]="stavka.vrednost" [selected]="trenutnaSkolskaGodina(stavka)">{{ stavka.vrednost }}</option>
+                </select>
+                <ng-container *ngIf="razredForma.controls.skolskaGodina">
+                    <ng-container *ngIf="razredForma.controls.skolskaGodina?.dirty && razredForma.controls.skolskaGodina?.touched && razredForma.controls.skolskaGodina?.errors">
+                        <div class="error-message" *ngIf="razredForma.controls.skolskaGodina?.errors?.['required']">
+                            Polje je obavezno.
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+            
+            <!--Razred-->
+            <div class="form-group">
+                <label for="razred">Razred:</label>
+                <select id="razred" formControlName="razred">
+                    <option *ngFor="let stavka of stavkeSifrarnikaRazred" [value]="stavka.vrednost" [selected]="trenutniRazred(stavka)">{{ stavka.vrednost }}</option>
+                </select>
+                <ng-container *ngIf="razredForma.controls.razred">
+                    <ng-container *ngIf="razredForma.controls.razred?.dirty && razredForma.controls.razred?.touched && razredForma.controls.razred?.errors">
+                        <div class="error-message" *ngIf="razredForma.controls.razred?.errors?.['required']">
+                            Polje je obavezno.
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <!--Program-->
+            <div class="form-group">
+                <label for="program">Program:</label>
+                <select id="program" formControlName="program">
+                    <option *ngFor="let stavka of stavkeSifrarnikaProgram" [value]="stavka.vrednost" [selected]="trenutniProgram(stavka)">{{ stavka.vrednost }}</option>
+                </select>
+                <ng-container *ngIf="razredForma.controls.program">
+                    <ng-container *ngIf="razredForma.controls.program?.dirty && razredForma.controls.program?.touched && razredForma.controls.program?.errors">
+                        <div class="error-message" *ngIf="razredForma.controls.program?.errors?.['required']">
+                            Polje je obavezno.
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <!--Ukupan broj ucenika za razred-->
+            <div class="form-group">
+                <label for="ukupanBrojUcenika">Ukupan broj učenika:</label>
+                <input id="ukupanBrojUcenika" formControlName="ukupanBrojUcenika" readonly />
+                <div class="info-message">Automatski izracunato polje.</div>
+            </div>
+
+            <!--Ukupan broj odeljenja-->
+            <div class="form-group">
+                <label for="ukupanBrojOdeljenja">Ukupan broj odeljenja:</label>
+                <input id="ukupanBrojOdeljenja" formControlName="ukupanBrojOdeljenja" readonly />
+                <div class="info-message">Automatski izracunato polje.</div>
+            </div>
+
+            <div class="error-message">{{nevalidnaForma}}</div>
+
+            <div class="center">
+                <button type="submit" class="btn-edit" [disabled]="!razredForma.valid">Sačuvaj izmene</button>
+            </div>
+            
+
+
+        </form>
+
+
+    </div>
+    <!--div>
+        Form contents: {{razredForma.value |json}}
+        Form is valid: {{razredForma.valid }}
+    </div-->
+</div>
+

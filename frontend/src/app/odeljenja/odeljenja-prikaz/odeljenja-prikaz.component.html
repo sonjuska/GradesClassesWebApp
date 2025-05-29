@@ -1,0 +1,88 @@
+<div class="container">
+
+    <div class="body">
+        <h1>Pregled odeljenja</h1>
+    </div>
+    
+    <nav class="main-nav">
+    <span (click)="razredi()" class="link">Razredi</span>                     
+    <span>|</span>
+    <span (click)="odeljenja()" class="link">Odeljenja</span>                
+    </nav>
+    <div class="body">
+
+        <!--Filtriranje-->
+        <!-- List Directory -->
+        <div id="filterSection" class="container content-space-1">
+            <!-- Form -->
+            <form>
+                <div class="row gx-2 gx-md-3 mb-7">
+                    <div class="col-md-4 mb-2 mb-md-0">
+                        <label class="form-label visually-hidden" for="filterOdeljenja">Pretraži razrede</label>
+
+                        <!-- Form -->
+                        <div class="input-group input-group-merge">
+                        <span class="input-group-prepend input-group-text">
+                            <i class="bi-search"></i>
+                        </span>
+                        <input type="text" [(ngModel)]="filterText" name="filter" (input)="onFilterChange()" class="form-control form-control-lg" id="filterOdeljenja" placeholder="Pretraži odeljenja" aria-label="Pretraži odeljenja">
+                        </div>
+                        <!-- End Form -->
+                    </div>
+                </div>
+                <!-- End Row -->
+            </form>
+            <!-- End Form -->
+        </div>
+        <!-- End List Directory -->
+
+        <ng-container *ngIf="odeljenjaPrikaz.length===0; else tabelaOdeljenja; ">
+            <h2>Ovaj razred nema nijedno odeljenje.</h2>
+        </ng-container>
+        <ng-template #tabelaOdeljenja>
+            <table >
+                <tr>
+                    <th>Naziv odeljenja</th>
+                    <th>Odeljenjski starešina</th>
+                    <th>Ukupan broj učenika</th>
+                    <th>Izdvojeno odeljenje</th>
+                    <th>Jezik nastave</th>
+                    <th class="akcije">Akcije</th>
+                </tr>
+                <tr *ngFor="let o of filtriranaOdeljenja">
+                    <td>{{o.naziv}}</td>
+                    <td>{{o.odeljenjskiStaresina}}</td>
+                    <td>{{o.brojUcenika}}</td>
+                    <td>{{izdvojenoOdeljenjeDaNe(o.izdvojenoOdeljenje)}}</td>
+                    <td>{{o.jezikNastave}}</td>
+                        
+                <td class="akcije">
+                    <button class="btn btn-edit" (click)="izmeni(o.id)">✏️ Izmeni</button>
+                    <button class="btn btn-delete" (click)="obrisi(o.id); $event.stopPropagation()">🗑️ Obriši</button>
+                </td>
+                </tr>
+            </table>
+
+            <br><br>
+            <div>
+                <button class="btn btn-export" (click)="eksportuj()">Eksportuj u Excell tabelu</button>  
+            </div>
+            <br>
+            <div class="paginacija">
+                <button class="btn" (click)="promeniStranicu(trenutnaStranica - 1)" [disabled]="trenutnaStranica === 1">«</button>
+                <button class="btn" *ngFor="let page of [].constructor(ukupnoStranica); let i = index"
+                        (click)="promeniStranicu(i + 1)"
+                        [class.active]="trenutnaStranica === i + 1">
+                    {{ i + 1 }}
+                </button>
+                <button class="btn" (click)="promeniStranicu(trenutnaStranica + 1)" [disabled]="trenutnaStranica === ukupnoStranica">»</button>
+            </div>
+
+        </ng-template>
+ 
+  <br>
+
+</div>
+
+</div>
+

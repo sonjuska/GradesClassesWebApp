@@ -1,0 +1,44 @@
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+yarn.lock
+.pnpm-debug.log
+
+# === Angular build output ===
+dist/
+build/
+tmp/
+temp/
+
+# === Angular config & tools ===
+.angular/
+.angular-cache/
+coverage/
+
+# === IDEs and editors ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# === Environment files ===
+src/environments/environment*.ts
+
+# === OS generated files ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+*.log
+
+# === Misc ===
+*.tgz
+*.gz
+*.zip
+
+# === Optional: test outputs ===
+test-output/
+karma-*.json

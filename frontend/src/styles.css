@@ -1,0 +1,311 @@
+table, tr, th, td {
+    border-collapse: collapse;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 2px 2px 2px  rgba(85, 7, 97, 0.2);
+}
+
+table {
+    background-color: #f3e5f5; 
+    width: 90%;
+    margin-top: 20px;
+}
+
+th {
+    background-color: #9c27b0; 
+    color: white;
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #efdefd;
+}
+
+tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+.razred td:hover{
+    cursor: pointer;
+    border: #5b0f61 solid 0.5px;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #ede7f6;
+}
+
+h1 {
+    color: #7d189c;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    
+}
+
+.btn {
+    padding: 6px 12px;
+    margin: 0 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-edit {
+    background-color: #7e57c2;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #ab47bc;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+.main-nav {
+  background-color: #a759bd; 
+  padding: 5px 24px;
+  text-align: center;
+  
+}
+
+.main-nav .link {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 10px;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.main-nav .link:hover {
+  color: #d1c4e9; 
+}
+
+.main-nav span {
+  color: white;
+  margin: 0 5px;
+}
+
+.btn-edit  :disabled{
+    background-color: #c8a2df; 
+    color: white;
+}
+.btn-insert{
+    background-color: #c8a2df; 
+    color: white;
+}
+
+.btn-delete {
+    background-color: #ab47bc; 
+    color: white;
+}
+
+/*forma*/
+.forma {
+    background-color: #ffffff; 
+    border-radius: 15px; 
+    padding: 30px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 80%; 
+    max-width: 900px; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    font-family: Arial, sans-serif; 
+    display: flex;
+    flex-direction: column; 
+    gap: 15px; 
+}
+
+.forma input,
+.forma select,
+.forma textarea {
+    width: 100%; 
+    padding: 10px; 
+
+    border-radius: 8px; 
+    border: 1px solid #ddd; 
+    font-size: 1rem; 
+    transition: border-color 0.3s ease; 
+}
+
+.forma input:focus,
+.forma select:focus,
+.forma textarea:focus {
+    border-color: #9c27b0; 
+    outline: none; 
+}
+
+.forma label {
+    font-size: 1rem; 
+    color: #333; 
+    font-weight: 600; 
+    margin-bottom: 5px; 
+}
+
+.forma .btn {
+    width: auto;
+    margin-top: 20px; 
+    display: inline-block; 
+}
+
+.forma .btn-edit,
+.forma .btn-delete,
+.forma .btn-insert {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: opacity 0.3s ease; 
+}
+
+.forma .btn-edit {
+    background-color: #9b57c2; 
+    color: white;
+    width: 20%;
+    border: #653880;
+    font-size: larger;
+}
+.btn-export{
+    background-color: #745ef3; 
+    color: white;
+    border: #653880;
+    font-size: large;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center
+
+}
+
+.forma .btn:hover {
+    opacity: 0.85; 
+}
+
+
+.forma .ng-container {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px; 
+}
+
+.forma .error-message {
+    color: red; 
+    font-size: 0.9rem;
+}
+.info-message{
+    color: rgba(0, 0, 0, 0.4);
+}
+/*paginacija*/
+.paginacija {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+}
+
+.paginacija .btn {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.paginacija .btn:hover {
+  background-color: #e0e0e0;
+}
+
+.paginacija .btn:disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.paginacija .btn.active {
+  background-color: #ee00ff;
+  color: white;
+  border-color: #ff00e6;
+}
+/* Container for the filter section */
+#filterSection {
+
+    max-width: 900px;
+    padding: 10px;
+}
+
+/* Label visibility (used for accessibility) */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+/* Input group styling */
+.input-group {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.input-group:hover,
+.input-group:focus-within {
+    box-shadow: 0 0 0 3px rgba(100, 149, 237, 0.2);
+}
+
+/* Search icon container */
+.input-group-prepend {
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    color: #666;
+}
+
+/* Search input field */
+.input-group .form-control {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 0 8px 8px 0;
+    width: 100%;
+}
+
+.input-group .form-control::placeholder {
+    color: #aaa;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+    #filterSection {
+        padding: 15px;
+    }
+
+    .input-group .form-control {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+}
+
+
+

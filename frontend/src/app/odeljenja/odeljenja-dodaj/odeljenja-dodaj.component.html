@@ -1,0 +1,166 @@
+<div class="container">
+
+    <div class="body">
+        <h1>Uredi odeljenje</h1>
+    </div>
+    
+    <nav class="main-nav">
+    <span (click)="razredi()" class="link">Razredi</span>                     
+    <span>|</span>
+    <span (click)="odeljenja()" class="link">Odeljenja</span>                
+    </nav>
+
+    <div class="body">
+        <form action="" [formGroup]="dodajForma" class="forma" (ngSubmit)="dodajOdeljenje()">
+            <h2>Dodaj odeljenje</h2>
+            <div class="form-group">
+                <label for="skolskaGodina">Školska godina:</label>
+                <input id="skolskaGodina" [value]="dodajForma.controls.skolskaGodina.value" [disabled]="dodajForma.controls.skolskaGodina.disabled" />
+            </div>
+
+            <!--Razred-->
+            <div class="form-group">
+                <label for="razred">Razred:</label>
+                <input id="razred" [value]="dodajForma.controls.razred.value" [disabled]="dodajForma.controls.razred.disabled" />
+            </div>
+
+            <!--Naziv odeljenja-->
+            <div class="form-group">
+                <label for="nazivOdeljenja">Naziv odeljenja:</label>
+                <app-input id="nazivOdeljenja" [control]="dodajForma.controls.nazivOdeljenja"></app-input>
+            </div>
+
+            <!--Vrsta odeljenja-->
+            <div class="form-group">
+                <label for="vrstaOdeljenja">Vrsta odeljenja:</label>
+                <select id="vrstaOdeljenja" [formControl]="dodajForma.controls.vrstaOdeljenja">
+                    <option *ngFor="let stavka of stavkeSifrarnikaVrsteOdeljenja" [value]="stavka.vrednost">{{ stavka.vrednost }}</option>
+                </select>
+            </div>
+
+            <!--Kombinovano odeljenje-->
+            <div class="form-group">
+                <label for="kombinovanOdeljenje">Kombinovano odeljenje:</label>
+                <input id="kombinovanOdeljenje" type="checkbox" name="kombinovanOdeljenje" [formControl]="dodajForma.controls.kombinovanoOdeljenje" />
+            </div>
+
+            <!--Celodnevna nastava-->
+            <div class="form-group">
+                <label for="celodnevnaNastava">Celodnevna nastava:</label>
+                <input id="celodnevnaNastava" type="checkbox" formControlName="celodnevnaNastava" />
+            </div>
+
+            <!--Izdvojeno odeljenje-->
+            <div class="form-group">
+                <label for="izdvojenoOdeljenje">Izdvojeno odeljenje:</label>
+                <input id="izdvojenoOdeljenje" type="checkbox" formControlName="izdvojenoOdeljenje" />
+            </div>
+            <ng-container *ngIf="dodajForma.controls.izdvojenoOdeljenje.value">
+                <!--Naziv izdvojene skole-->
+                <div class="form-group">
+                    <label for="nazivIzdvojeneSkole">Naziv izdvojene skole:</label>
+                    <input type="text" id="nazivIzdvojeneSkole" formControlName="nazivIzdvojeneSkole"/>
+                </div>
+            </ng-container>
+
+
+            <!--Odeljenski staresina-->
+            <div class="form-group">
+                <label for="odeljenskiStaresina">Odeljenski starešina:</label>
+                <input id="odeljenskiStaresina" formControlName="odeljenskiStaresina" type="text" />
+            </div>
+
+            <!--Smena-->
+            <ng-container *ngIf="!dodajForma.controls.celodnevnaNastava.value">
+                <div class="form-group">
+                    <label for="smena">Smena:</label>
+                    <select name="smena" id="smena" formControlName="smena">
+                        <option value="prva">prva</option>
+                        <option value="druga">druga</option>
+                    </select>
+                </div>
+            </ng-container>
+
+            <!--Jezik nastave-->
+            <div class="form-group">
+                <label for="jezikNastave">Jezik nastave:</label>
+                <select id="jezikNastave" [formControl]="dodajForma.controls.jezikNastave">
+                    <option *ngFor="let stavka of stavkeSifrarnikaJeziciNastave" [value]="stavka.vrednost">{{ stavka.vrednost }}</option>
+                </select>
+                <ng-container *ngIf="dodajForma.controls.jezikNastave">
+                    <ng-container *ngIf="dodajForma.controls.jezikNastave.dirty && dodajForma.controls.jezikNastave.touched && dodajForma.controls.jezikNastave.errors">
+                        <div class="error-message" *ngIf="dodajForma.controls.jezikNastave.errors?.['required']">
+                            Polje je obavezno.
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </div>
+
+            <!--Dvojezicno odeljenje-->
+            <div class="form-group">
+                <label for="dvojezicnoOdeljenje">Dvojezično odeljenje:</label>
+                <input id="dvojezicnoOdeljenje" type="checkbox" formControlName="dvojezicnoOdeljenje" />
+            </div>
+
+            <ng-container *ngIf="dodajForma.controls.dvojezicnoOdeljenje.value">
+                <!--Prvi strani jezik-->
+                <div class="form-group">
+                    <label for="prviStraniJezik">Prvi strani jezik:</label>
+                    <select id="prviStraniJezik" [formControl]="dodajForma.controls.prviStraniJezik">
+                        <option *ngFor="let stavka of stavkeSifrarnikaPrviStraniJezici" [value]="stavka.vrednost">{{ stavka.vrednost }}</option>
+                    </select>
+                </div>
+            </ng-container>
+
+            <!--Broj decaka-->
+            <div class="form-group">
+                <label for="brojDecaka">Broj dečaka:</label>
+                <app-input [control]="dodajForma.controls.brojDecaka"></app-input>
+                <ng-container *ngIf="dodajForma.controls.brojDecaka">
+                    <div class="error-message" *ngIf="dodajForma.controls.brojDecaka.errors?.['veciOdNule'] && dodajForma.controls.brojDecaka.touched && dodajForma.controls.brojDecaka.dirty">
+                        Broj učenika mora biti veći od nule.
+                    </div>
+                    <div class="error-message" *ngIf="dodajForma.controls.brojDecaka.errors?.['pattern']">
+                        Dozvoljeni su samo brojevi.
+                    </div>
+                </ng-container>
+            </div>
+
+            <!--Broj ucenica-->
+            <div class="form-group">
+                <label for="brojDevojcica">Broj devojčica:</label>
+                <app-input [control]="dodajForma.controls.brojDevojcica"></app-input>
+                <ng-container *ngIf="dodajForma.controls.brojDevojcica">
+                    <div class="error-message" *ngIf="dodajForma.controls.brojDevojcica.errors?.['veciOdNule'] && dodajForma.controls.brojDevojcica.touched && dodajForma.controls.brojDevojcica.dirty">
+                        Broj učenica mora biti veći od nule.
+                    </div>
+                    <div class="error-message" *ngIf="dodajForma.controls.brojDecaka.errors?.['veciOdNule'] && dodajForma.controls.brojDecaka.touched && dodajForma.controls.brojDecaka.dirty">
+                        Broj učenika mora biti veći od nule.
+                    </div>
+                </ng-container>
+            </div>
+            
+            <!--Broj ucenika-->
+            <div class="form-group">
+                <label for="brojUcenika">Broj učenika:</label>
+                <input id="brojUcenika" formControlName="brojUcenika" readonly/>
+                <div class="info-message">Automatski izracunato polje.</div>
+            </div>
+
+            <div class="center">
+                <button type="submit" class="btn btn-insert" [disabled]="!dodajForma.valid">Dodaj</button>
+            </div>
+        </form>
+
+    <br>
+
+    <!--div>
+        Form contents: {{dodajForma.value |json}}
+        Form is valid: {{dodajForma.valid }}
+    </div-->
+
+    </div>
+
+</div>
+
+

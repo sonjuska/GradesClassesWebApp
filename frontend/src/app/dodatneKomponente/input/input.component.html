@@ -1,0 +1,9 @@
+<input [formControl]="control"/>
+<ng-container *ngIf="control">
+    <ng-container
+  *ngIf="control?.dirty && control?.touched &&control?.errors">
+  <div class="error-message" *ngIf="control?.errors?.['required']">
+    Polje je obavezno.
+  </div>
+    </ng-container> 
+</ng-container>
