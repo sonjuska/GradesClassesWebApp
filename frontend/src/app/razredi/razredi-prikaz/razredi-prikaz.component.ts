@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-razredi-prikaz',
+  standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './razredi-prikaz.component.html',
   styleUrl: './razredi-prikaz.component.css'
@@ -65,8 +66,12 @@ export class RazrediPrikazComponent implements OnInit{
   poStranici = 10;
   ukupnoStranica = 1;
   ukupnoRedova = 0;
+  
+  //loading spinner
+  loading:boolean = false;
 
   ucitajRazrede(){
+    this.loading = true;
     const offset = (this.trenutnaStranica - 1) * this.poStranici;
     this.servis.dohvatiSveRazredePaginacija(this.poStranici, offset)
       .subscribe(res => {
@@ -75,6 +80,7 @@ export class RazrediPrikazComponent implements OnInit{
         this.ukupnoRedova = res.total;
         this.ukupnoStranica = Math.ceil(this.ukupnoRedova / this.poStranici);
         this.filtrirajRazrede();
+        this.loading = false;
       });
 
   }
@@ -102,6 +108,9 @@ export class RazrediPrikazComponent implements OnInit{
   onFilterChange() {
     this.filtrirajRazrede();
   }
+
+
+
   
   /*
   //prikaz bez paginacije

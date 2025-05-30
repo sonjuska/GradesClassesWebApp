@@ -91,3 +91,4 @@ C:\Users\sonjal\Desktop\praksa\backend\backend\bin\Debug\net9.0\Microsoft.IO.Rec
 C:\Users\sonjal\Desktop\praksa\backend\backend\bin\Debug\net9.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\sonjal\Desktop\praksa\backend\backend\bin\Debug\net9.0\System.Security.Cryptography.Xml.dll
 C:\Users\sonjal\Desktop\praksa\backend\backend\bin\Debug\net9.0\runtimes\win\lib\net9.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\sonjal\Desktop\praksa\backend\backend\obj\Debug\net9.0\backend.sourcelink.json

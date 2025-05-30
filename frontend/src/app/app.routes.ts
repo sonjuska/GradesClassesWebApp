@@ -1,18 +1,29 @@
 import { Routes } from '@angular/router';
-import { RazrediPrikazComponent } from './razredi/razredi-prikaz/razredi-prikaz.component';
-import { RazrediIzmeniComponent } from './razredi/razredi-izmeni/razredi-izmeni.component';
-import { OdeljenjaPrikazComponent } from './odeljenja/odeljenja-prikaz/odeljenja-prikaz.component';
-import { DodajRazredComponent } from './razredi/dodaj-razred/dodaj-razred.component';
-import { OdeljenjaIzmeniComponent } from './odeljenja/odeljenja-izmeni/odeljenja-izmeni.component';
-import { OdeljenjaDodajComponent } from './odeljenja/odeljenja-dodaj/odeljenja-dodaj.component';
 
 export const routes: Routes = [
-    {path: '', component: RazrediPrikazComponent},
-    {path: 'razredi', component: RazrediPrikazComponent},
-    {path: 'razredIzmeni/:id', component: RazrediIzmeniComponent},
-    {path: 'dodajRazred', component: DodajRazredComponent},
-    {path: 'odeljenja', component:OdeljenjaPrikazComponent},
-    {path: 'odeljenja/:id', component: OdeljenjaPrikazComponent},
-    {path: 'odeljenja/dodaj/:id', component: OdeljenjaDodajComponent},
-    {path: 'odeljenja/izmeni/:id', component: OdeljenjaIzmeniComponent}
+    {path: '',
+        loadComponent: () => import('./razredi/razredi-prikaz/razredi-prikaz.component')  //lazy loading
+      .then(m => m.RazrediPrikazComponent)},
+    {path: 'razredi',
+        loadComponent: () => import('./razredi/razredi-prikaz/razredi-prikaz.component')
+      .then(m => m.RazrediPrikazComponent)},
+    {path: 'razredIzmeni/:id',
+        loadComponent: () => import('./razredi/razredi-izmeni/razredi-izmeni.component')
+      .then(m => m.RazrediIzmeniComponent)},
+    {path: 'dodajRazred',
+        loadComponent: () => import('./razredi/dodaj-razred/dodaj-razred.component')
+      .then(m => m.DodajRazredComponent)},
+    {path: 'odeljenja',
+        loadComponent: () => import('./odeljenja/odeljenja-prikaz/odeljenja-prikaz.component')
+      .then(m => m.OdeljenjaPrikazComponent)},
+    {path: 'odeljenja/:id',
+        loadComponent: () => import('./odeljenja/odeljenja-prikaz/odeljenja-prikaz.component')
+      .then(m => m.OdeljenjaPrikazComponent)},
+    {path: 'odeljenja/dodaj/:id',
+        loadComponent: () => import('./odeljenja/odeljenja-dodaj/odeljenja-dodaj.component')
+      .then(m => m.OdeljenjaDodajComponent)},
+    {path: 'odeljenja/izmeni/:id',
+        loadComponent: () => import('./odeljenja/odeljenja-izmeni/odeljenja-izmeni.component')
+      .then(m => m.OdeljenjaIzmeniComponent)
+    }
 ];

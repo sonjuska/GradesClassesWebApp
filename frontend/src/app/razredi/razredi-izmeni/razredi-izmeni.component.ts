@@ -10,6 +10,7 @@ import { StavkeSifrarnikaService } from '../../sifrarnici/stavke-sifrarnika.serv
 
 @Component({
   selector: 'app-razredi-izmeni',
+  standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './razredi-izmeni.component.html',
   styleUrl: './razredi-izmeni.component.css'

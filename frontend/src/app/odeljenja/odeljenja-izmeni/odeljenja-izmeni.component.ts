@@ -12,6 +12,7 @@ import { StavkeSifrarnikaService } from '../../sifrarnici/stavke-sifrarnika.serv
 
 @Component({
   selector: 'app-odeljenja-izmeni',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, InputComponent],
   templateUrl: './odeljenja-izmeni.component.html',
   styleUrl: './odeljenja-izmeni.component.css'

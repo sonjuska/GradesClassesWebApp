@@ -9,6 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-odeljenja-prikaz',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule,FormsModule],
   providers: [DatePipe], 
   templateUrl: './odeljenja-prikaz.component.html',

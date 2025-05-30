@@ -306,6 +306,27 @@ h1 {
         padding: 10px 14px;
     }
 }
+/*loading spinned*/
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 5px solid rgba(0,0,0,0.1);
+  border-top-color: #8000ff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 
 
 

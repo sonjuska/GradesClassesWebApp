@@ -36,41 +36,46 @@
         </div>
         <!-- End List Directory -->
 
-        <ng-container *ngIf="sviRazredi.length===0; else tabelaRazredi; ">
-            <div>
-                <h2>Trenutno nema nijednog razreda.</h2>
-            </div>
+        <ng-container *ngIf="loading" class="spinner-container">    <!--Loading spinner-->
+            <div class="spinner"></div>
         </ng-container>
-        <ng-template #tabelaRazredi>
-            <table>
-                <tr>
-                    <th>Školska godina</th>
-                    <th>Razred</th>
-                    <th>Program</th>
-                    <th>Ukupan broj odeljenja</th>
-                    <th>Ukupan broj učenika</th>
-                    <th class="actions">Akcije</th>
-                </tr>
-                <tr *ngFor="let r of filtriraniRazredi" (click)="odeljenjaPoIdRazreda(r.id)">
-                    <td>{{ r.skolskaGodina }}</td>
-                    <td class="razred">{{ r.razredNaziv}}</td>
-                    <td>{{ r.program }}</td>
-                    <td>{{ r.ukupanBrojOdeljenja }}</td>
-                    <td>{{ r.ukupanBrojUcenika }}</td>
-                    <td class="akcije">
-                        <button class="btn btn-edit" (click)="izmeni(r.id)">✏️ Izmeni</button>
-                        <button class="btn btn-delete" (click)="obrisi(r.id); $event.stopPropagation()">🗑️ Obriši</button>
-                        <button class="btn btn-insert" (click)="dodajOdeljenje(r.id); $event.stopPropagation()">➕ Dodaj odeljenje</button>
-                    </td>
-                </tr>
-            </table><br>
-        </ng-template>
 
-        <div class="center">
-            <button class="btn btn-insert" (click)="dodajRazred()">Dodaj razred</button>
-        </div><br>
+        <ng-container *ngIf="!loading">
+            <ng-container *ngIf="sviRazredi.length===0; else tabelaRazredi; ">
+                <div>
+                    <h2>Trenutno nema nijednog razreda.</h2>
+                </div>
+            </ng-container>
+            <ng-template #tabelaRazredi>
+                <table>
+                    <tr>
+                        <th>Školska godina</th>
+                        <th>Razred</th>
+                        <th>Program</th>
+                        <th>Ukupan broj odeljenja</th>
+                        <th>Ukupan broj učenika</th>
+                        <th class="actions">Akcije</th>
+                    </tr>
+                    <tr *ngFor="let r of filtriraniRazredi" (click)="odeljenjaPoIdRazreda(r.id)">
+                        <td>{{ r.skolskaGodina }}</td>
+                        <td class="razred">{{ r.razredNaziv}}</td>
+                        <td>{{ r.program }}</td>
+                        <td>{{ r.ukupanBrojOdeljenja }}</td>
+                        <td>{{ r.ukupanBrojUcenika }}</td>
+                        <td class="akcije">
+                            <button class="btn btn-edit" (click)="izmeni(r.id)">✏️ Izmeni</button>
+                            <button class="btn btn-delete" (click)="obrisi(r.id); $event.stopPropagation()">🗑️ Obriši</button>
+                            <button class="btn btn-insert" (click)="dodajOdeljenje(r.id); $event.stopPropagation()">➕ Dodaj odeljenje</button>
+                        </td>
+                    </tr>
+                </table><br>
+            </ng-template>
 
-        <!--ng-template #tabelaRazredi-->
+            <div class="center">
+                <button class="btn btn-insert" (click)="dodajRazred()">Dodaj razred</button>
+            </div><br>
+
+            <!--ng-template #tabelaRazredi-->
             <div class="paginacija">
                 <button class="btn" (click)="promeniStranicu(trenutnaStranica - 1)" [disabled]="trenutnaStranica === 1">«</button>
                 <button class="btn" *ngFor="let page of [].constructor(ukupnoStranica); let i = index"
@@ -80,7 +85,9 @@
                 </button>
                 <button class="btn" (click)="promeniStranicu(trenutnaStranica + 1)" [disabled]="trenutnaStranica === ukupnoStranica">»</button>
             </div><br>
-        <!--/ng-template-->
+            <!--/ng-template-->
+        </ng-container>
+
     </div>
 
 </div>

@@ -9,6 +9,7 @@ import { StavkeSifrarnikaService } from '../../sifrarnici/stavke-sifrarnika.serv
 
 @Component({
   selector: 'app-dodaj-razred',
+  standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './dodaj-razred.component.html',
   styleUrl: './dodaj-razred.component.css'

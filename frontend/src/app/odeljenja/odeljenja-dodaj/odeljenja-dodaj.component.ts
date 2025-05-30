@@ -12,6 +12,7 @@ import { StavkeSifrarnikaService } from '../../sifrarnici/stavke-sifrarnika.serv
 
 @Component({
   selector: 'app-odeljenja-dodaj',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, InputComponent],
   templateUrl: './odeljenja-dodaj.component.html',
   styleUrl: './odeljenja-dodaj.component.css'
